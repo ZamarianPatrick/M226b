@@ -1,3 +1,0 @@
-load-extern: true
-load-path: C:/Users/patri/Documents/Projekt/client
-ip: localhost
