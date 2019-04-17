@@ -1,0 +1,2 @@
+load-extern: true
+load-path: C:/Users/patri/Documents/Projekt/server
