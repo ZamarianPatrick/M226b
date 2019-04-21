@@ -31,8 +31,11 @@ public class PGameContainer extends PContainer{
 	@Override
 	public void draw(PGraphics pg) {
 		List<GameObject> toRemove = new ArrayList<GameObject>();
+		PGraphics pgComp = rootContainer.getPApplet().createGraphics(width, height);
+		pgComp.beginDraw();
+		
 		for(GameObject obj : objects) {
-			obj.display(pg);
+			obj.display(pgComp);
 			if(obj instanceof Destroyable) {
 				Destroyable destroy = (Destroyable) obj;
 				if(destroy.getLiveTicks() > 0) {
@@ -43,6 +46,8 @@ public class PGameContainer extends PContainer{
 				}
 			}
 		}
+		pgComp.endDraw();
+		pg.image(pgComp, x, y);
 		objects.removeAll(toRemove);
 		drawIt(pg);
 	}
