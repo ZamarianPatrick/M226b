@@ -2,8 +2,15 @@ package patrick.views;
 
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
+import patrick.component.action.ClickListener;
 import patrick.component.components.PAutoSizeContainer;
+import patrick.component.components.PButton;
 import patrick.component.enums.AutoSize;
+import patrick.utils.Components;
+import processing.core.PApplet;
+import processing.event.MouseEvent;
 /**
  * <p>Übersicht, welche alle Spiele anzeigt</p>
  * 
@@ -26,8 +33,32 @@ public class GamesView extends PAutoSizeContainer{
 		this.width = width;
 		this.x = 0;
 		this.y = 0;
-		int y = 0;
-		int x = 0;
+		int y = 10;
+		int x = 5;
+		
+		PButton impressumButton = Components.getButton("Impressum", 200);
+		impressumButton.setLocation(x, y);
+		
+		add(impressumButton);
+		
+		impressumButton.addActionListener(new ClickListener() {
+			
+			@Override
+			public void onClick(MouseEvent e) {
+				if(e.getButton() == PApplet.LEFT) {
+					JOptionPane.showMessageDialog(null,
+							"Impressum:\n"
+							+ "company: TOPOMEDICS AG\n"
+							+ "product: games for multiplayer\n"
+							+ "product id: 56230\n"
+							+ "creator: Patrick Zamarian"
+							);
+				}
+			}
+		});
+		
+		y += impressumButton.getHeight() + 20;
+		
 		for(Map.Entry<String, String> entry : games.entrySet()) {
 			GameView gameView = new GameView(entry.getKey(), entry.getValue(), gameSize);
 			gameView.setLocation(x, y);
@@ -35,7 +66,7 @@ public class GamesView extends PAutoSizeContainer{
 				x+= gameView.getWidth()+20;
 			}else {
 				y+= gameView.getHeight()+20;
-				x = 0;
+				x = 5;
 			}
 			add(gameView);
 		}
