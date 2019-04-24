@@ -3,6 +3,7 @@ package patrick.packets.out;
 import java.util.ArrayList;
 import java.util.List;
 
+import patrick.game.Game;
 import patrick.packets.Packet;
 /**
  * <p>Verwertet Anfragen für die verfügbaren Runden</p>
@@ -61,6 +62,16 @@ public class RequestRoundPacket extends Packet{
 		for(RoundPacket round : rounds) {
 			this.rounds.add(round);
 		}
+	}
+	
+	/**
+	 * Erzeugt ein RequestRoundPacket
+	 * 
+	 * @param game Spiel der Runde
+	 */
+	
+	public RequestRoundPacket(Game game) {
+		this.gameName = game.getName();
 	}
 	
 	/**

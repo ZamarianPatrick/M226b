@@ -33,7 +33,7 @@ public class RequestRoundsListener implements Listener{
 	
 	public void onRequest(ClientRequestRoundsEvent e) {
 		if(e.getGame() != null) {
-			RequestRoundPacket packet = new RequestRoundPacket(e.getGameName());
+			RequestRoundPacket packet = new RequestRoundPacket(e.getGame());
 			for(WaitingRound round : Server.getAllGameRounds()) {
 				if(round.getGame().getName().equals(e.getGameName())) {
 					RoundPacket roundPacket = new RoundPacket(round.getHost().getName(),
